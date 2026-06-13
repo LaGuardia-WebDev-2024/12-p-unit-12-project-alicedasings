@@ -11,6 +11,8 @@ Select ONE Additional Feature to Add
 [ no ] Feature 3 - .mouseover() & .mouseOut() Methods
 [ no ] Feature 4 - :hover Feature 
 [ no ] Feature 5 - Add an Additional Interactive Drop-down
+
+//i added a google font
 -->
 
 <!DOCTYPE html>
@@ -18,6 +20,9 @@ Select ONE Additional Feature to Add
   <head>
     <meta charset="utf-8" />
     <title>Unit 12 Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
@@ -28,16 +33,17 @@ Select ONE Additional Feature to Add
       <label>
         🎥 What is my favorite movie?
         <select id="movie-answer">
-          <option value="movie1">movie 1</option>
-          <option value="movie2">movie 2</option>
-          <option value="movie3">movie 3</option>
-          <option value="movie4">movie 4</option>
+          <option value="movie1">Mr. and Mrs. Smith</option>
+          <option value="movie2">Jaws</option>
+          <option value="movie3">Iron Man</option>
+          <option value="movie4">Mamma Mia: Here We Go Again</option>
         </select>
       </label>
       <button type="submit">Check Movie Answer</button>
     </form>
     <div id="movie-result">
       <p id="movie-text"></p>
+      <img class="movie-pic" src="" alt="Movie image">
     </div>
     <hr />
     <!-- Book Question -->
@@ -45,16 +51,17 @@ Select ONE Additional Feature to Add
       <label>
         📖 What is my favorite book?
         <select id="book-answer">
-          <option value="book1">book 1</option>
-          <option value="book2">book 2</option>
-          <option value="book3">book 3</option>
-          <option value="book4">book 4</option>
+          <option value="book1">The Great Gatsby</option>
+          <option value="book2">Tell Me My Name </option>
+          <option value="book3">Fight Club</option>
+          <option value="book4">The 5th Wave </option>
         </select>
       </label>
       <button type="submit">Check Book Answer</button>
     </form>
     <div id="book-result">
       <p id="book-text"></p>
+      <img class="book-cover" src="" alt="Book cover">
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script>
@@ -66,12 +73,17 @@ Select ONE Additional Feature to Add
         var $answer = $("#movie-answer");
         var answer = $answer.val();
 
-        if (answer === "movie1") {
+        if (answer === "movie4") {
           $("#movie-text").text("YESSSS!");
+          $(".movie-pic").attr("src","https://compote.slate.com/images/3a40a7b2-40de-4744-89ba-b588f745fe8a.jpeg?crop=1560%2C1040%2Cx0%2Cy0").show();
         } 
         else {
           $("#movie-text").text("Try Again!");
+          $(".movie-pic").hide().attr("src","");
         }
+
+        // standard animation: fade 
+        $("#movie-result").hide().fadeIn(500);
       });
 
       //=======================Book Question jQuery Code
@@ -81,12 +93,22 @@ Select ONE Additional Feature to Add
         var $answer = $("#book-answer");
         var answer = $answer.val();
 
-        if (answer === "book1") {
-          $("#book-text").text("YESSSS!");
-        } 
-        else {
+        if (answer === "book2") {
+          $("#book-text").text("YESS! I love love love psychological thrillers.");
+          $(".book-cover").attr("src","https://m.media-amazon.com/images/I/81IOfTDAImL._AC_UF1000,1000_QL80_.jpg").show();
+        } else if (answer === "book3") {
+          $("#book-text").text("No, but it's my second. If you for some reason haven't read it, you must. Unless you get uncomfy about the insane.");
+          $(".book-cover").attr("src","https://m.media-amazon.com/images/I/71-C-3RkOXL._AC_UF1000,1000_QL80_.jpg").show();
+        } else {
           $("#book-text").text("Try Again!");
+          $(".book-cover").hide().attr("src","");
         }
+
+        // standard animation: fade 
+        $("#book-result").hide().fadeIn(500);
+
+        // custom animation: move the book a lil 
+        $("#book-result").css({ marginLeft: "0px" }).animate({ marginLeft: "20px" }, 400);
       });
       
     </script>
